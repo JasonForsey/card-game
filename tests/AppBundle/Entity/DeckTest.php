@@ -49,4 +49,50 @@ class DeckTest extends TestCase
 
     }
 
+    public function testShuffledDeck()
+    {
+
+        $deck = new Deck();
+        $deck->shuffle();
+        $allCardsShuffled = $deck->getAllCards();
+
+        $cardsFoundInSequence = false;
+        /**
+         *
+         * Loop through the shuffled cards and assess whether the next card is
+         * in sequence or not.
+         *
+         * @var Card $shuffledCard
+         *
+         */
+        foreach ($allCardsShuffled as $shuffledCardKey => $shuffledCard)
+        {
+            if (51 > $shuffledCardKey) {
+                $nextShuffledCardKey = $shuffledCardKey + 1;
+                /** @var Card $nextShuffledCard */
+                $nextShuffledCard = $allCardsShuffled[$nextShuffledCardKey];
+
+                $currentCardSuit = $shuffledCard->getSuit();
+                $currentCardValue = $shuffledCard->getValue();
+                $nextShuffledCardSuit = $nextShuffledCard->getSuit();
+                $nextShuffledCardValue = $nextShuffledCard->getValue();
+
+                if (13 === $currentCardValue){
+                    if ($nextShuffledCardSuit === $currentCardSuit+1 && 1 === $nextShuffledCardValue){
+                        $cardsFoundInSequence = true;
+                        break;
+                    }
+                } else {
+                    if ($nextShuffledCardSuit === $currentCardSuit && $nextShuffledCardValue === $currentCardValue+1){
+                        $cardsFoundInSequence = true;
+                        break;
+                    }
+                }
+            }
+        }
+
+        $this->assertFalse($cardsFoundInSequence);
+
+    }
+
 }
