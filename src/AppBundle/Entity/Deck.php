@@ -45,5 +45,12 @@ class Deck
         return $this->allCards;
     }
 
+    /**
+     * Shuffle the deck
+     */
+    public function shuffle()
+    {
+        $this->allCards = array_reverse($this->allCards);
+    }
 
 }
