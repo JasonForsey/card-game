@@ -11,7 +11,7 @@ class DeckTest extends TestCase
     {
         $deck = new Deck();
 
-        $this->assertCount(52, $deck->allCards);
+        $this->assertCount(52, $deck->getAllCards());
 
     }
 
