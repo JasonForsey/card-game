@@ -19,7 +19,7 @@ class PlayerTest extends TestCase
     {
         $player = new Player('testing');
 
-        $this->assertNull($player->getHand);
+        $this->assertNull($player->getHand());
 
     }
 
@@ -30,7 +30,7 @@ class PlayerTest extends TestCase
 
         $player->newHand($hand);
 
-        $this->assertInstanceOf('AppBundle\Entity\Hand', $player->getHand);
+        $this->assertInstanceOf('AppBundle\Entity\Hand', $player->getHand());
 
     }
 
