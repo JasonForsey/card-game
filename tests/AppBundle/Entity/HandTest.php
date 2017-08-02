@@ -2,6 +2,7 @@
 
 namespace Tests\AppBundle\Entity;
 
+use AppBundle\Entity\Card;
 use AppBundle\Entity\Hand;
 use PHPUnit\Framework\TestCase;
 
@@ -10,7 +11,7 @@ class HandTest extends TestCase
     public function testNewHand()
     {
         $hand = new Hand();
-        $this->assertCount(0, $hand->getCardCount());
+        $this->assertEquals(0, $hand->getCardCount());
 
     }
 
@@ -18,11 +19,11 @@ class HandTest extends TestCase
     {
         $hand = new Hand();
 
-        $mockCard = $this->getMockClass('AppBundle\Entity\Card', null, [3, 7]);
+        $card = new Card(3, 7);
 
-        $hand->addCard($mockCard);
+        $hand->addCard($card);
 
-        $this->assertCount(1, $hand->getCardCount());
+        $this->assertEquals(1, $hand->getCardCount());
 
     }
 
