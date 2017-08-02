@@ -95,4 +95,21 @@ class DeckTest extends TestCase
 
     }
 
+    public function testDealCard()
+    {
+
+        $deck = new Deck();
+        /** @var Card $dealtCard */
+        $dealtCard = $deck->deal();
+
+        $this->assertEquals(1, $dealtCard->getSuit());
+        $this->assertEquals(1, $dealtCard->getValue());
+
+        /** @var Card $dealtCard */
+        $dealtCard = $deck->deal();
+
+        $this->assertEquals(1, $dealtCard->getSuit());
+        $this->assertEquals(2, $dealtCard->getValue());
+    }
+
 }
