@@ -2,28 +2,55 @@
 
 namespace AppBundle\Entity;
 
-class Hand
+
+class Player
 {
 
     /**
-     * @var array $cards
+     * @var string $name
      */
-    protected $cards = [];
+    protected $name;
 
     /**
-     * @param Card $card
+     * @var Hand $hand
      */
-    public function addCard(Card $card)
+    protected $hand;
+
+    /**
+     * Player constructor.
+     * @param string $name
+     */
+    public function __construct($name = null)
     {
-        $this->cards[] = $card;
+        if (null === $name){
+            throw new \InvalidArgumentException('No player name was supplied');
+        }
+
+        $this->name = $name;
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getCardCount() : int
+    public function getName(): string
     {
-        return count($this->cards);
+        return $this->name;
+    }
+
+    /**
+     * @return Hand
+     */
+    public function getHand(): ?Hand
+    {
+        return $this->hand;
+    }
+
+    /**
+     * @param Hand $hand
+     */
+    public function newHand(Hand $hand)
+    {
+        $this->hand = $hand;
     }
 
 }
