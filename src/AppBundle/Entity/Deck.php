@@ -11,12 +11,18 @@ class Deck
     protected $allCards;
 
     /**
+     * @var int $cardIndexToDeal
+     */
+    protected $cardIndexToDeal;
+
+    /**
      * Deck constructor.
      */
     public function __construct()
     {
         
         $this->allCards = $this->newDeck();
+        $this->cardIndexToDeal = 0;
         
     }
 
@@ -51,6 +57,20 @@ class Deck
     public function shuffle()
     {
         $this->allCards = array_reverse($this->allCards);
+    }
+
+    /**
+     * @return Card
+     */
+    public function deal(): Card
+    {
+
+        $allCards = $this->getAllCards();
+        $card = $allCards[$this->cardIndexToDeal];
+        $this->cardIndexToDeal++;
+
+        return $card;
+
     }
 
 }
